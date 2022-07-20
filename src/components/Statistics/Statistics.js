@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class Statistics extends React.Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+
+  static propTypes = {
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
   };
 
   handleClick = event => {
@@ -24,7 +31,7 @@ export class Statistics extends React.Component {
   countPositiveFeedbackPercentage = () => {
     const { good, neutral, bad } = this.state;
     const sum = good + neutral + bad;
-    const percentage = (good * 100) / sum;
+    const percentage = Math.round((good * 100) / sum);
     return percentage;
   };
 
