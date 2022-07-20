@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Statistics.module.css';
 
 export class Statistics extends React.Component {
   state = {
@@ -42,13 +43,14 @@ export class Statistics extends React.Component {
     const feedback = this.countPositiveFeedbackPercentage();
 
     return (
-      <div className="statistics">
-        <div className="btn">
-          <h1 className="btn__title">Please leave feedback</h1>
+      <div className={styles.statistics}>
+        <h1 className={styles.statistics__title}>Please leave feedback</h1>
+
+        <ul className={styles.statistics__list}>
           <button
             type="button"
             name="good"
-            className="btn__good"
+            className={styles.statistics__btn}
             onClick={this.handleClick}
           >
             Good
@@ -56,7 +58,7 @@ export class Statistics extends React.Component {
           <button
             type="button"
             name="neutral"
-            className="btn__neutral"
+            className={styles.statistics__btn}
             onClick={this.handleClick}
           >
             Neutral
@@ -64,23 +66,26 @@ export class Statistics extends React.Component {
           <button
             type="button"
             name="bad"
-            className="btn__bad"
+            className={styles.statistics__btn}
             onClick={this.handleClick}
           >
             Bad
           </button>
-        </div>
+        </ul>
 
         <div className="group">
-          <h2 className="group__title">Statistics</h2>
-          <ul className="group__list">
-            <li className="group__item">Good: {good}</li>
-            <li className="group__item">Neutral: {neutral}</li>
-            <li className="group__item">Bad: {bad}</li>
-            <li className="group__item" onClick={this.countTotalFeedback}>
+          <h2 className={styles.group__title}>Statistics</h2>
+          <ul className={styles.group__list}>
+            <li className={styles.group__item}>Good: {good}</li>
+            <li className={styles.group__item}>Neutral: {neutral}</li>
+            <li className={styles.group__item}>Bad: {bad}</li>
+            <li
+              className={styles.group__item}
+              onClick={this.countTotalFeedback}
+            >
               Total: {total}
             </li>
-            <li className="group__item">
+            <li className={styles.group__item}>
               Positive feedback: {feedback || 0} %
             </li>
           </ul>
