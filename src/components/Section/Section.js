@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Statistics.module.css';
+import styles from '../Section/Section.module.css';
 
 export const Section = ({ title, children }) => {
   return (

@@ -1,6 +1,10 @@
-import React,  {Component } from 'react';
+import  {Component } from 'react';
+import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions';
+import {Section} from './Section/Section';
 import {Statistics} from './Statistics/Statistics';
-import {Section} from './Statistics/Section';
+import {Notification} from './Notification/Notification';
+import '../index.css'
+
 
 // import PropTypes from 'prop-types';
 // import styles from './Statistics.module.css';
@@ -30,6 +34,8 @@ export class App extends Component {
     bad: 0,
   };
 
+
+
   onLeaveFeedback = event => {
     const { name } = event.target;
 
@@ -51,24 +57,36 @@ export class App extends Component {
     return percentage;
   };
 
-//  render() 
-// {
-//   const { good, neutral, bad } = this.state;
-//   const total = this.countTotalFeedback();
-//   const feedback = this.countPositiveFeedbackPercentage();
-//  }
-
-//  return (
-//   <Section title="Statistics">
-//   <Statistics 
-//   good={good}
-//   neutral={neutral}
-//   bad={bad}
-//   total={total}
-//   positivePercentage= {positivePercentage}
-//    />
-// </Section>
-// );
+ render() {
+  const { good, neutral, bad } = this.state;
+  const total = this.countTotalFeedback();
+  const percentage = this.countPositiveFeedbackPercentage();
+  const objKey = Object.keys(this.state)
 
 
-};
+ return (
+  <>
+
+  <Section title="Please leave feedback">
+  <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback}  options={objKey}
+   />
+</Section>
+
+{total === 0 ? (<Notification message="There is no feedback"/>) :
+
+
+  (<Section title="Statistics">
+  <Statistics 
+  good={good}
+  neutral={neutral}
+  bad={bad}
+  total={total}
+  positivePercentage= {percentage}
+   />
+</Section>
+)}
+
+</>
+ )
+}
+}
